@@ -95,7 +95,7 @@ os.makedirs(local_dir, exist_ok=True)
 
 # Download all 10 files
 for i in range(10):
-    filename = f"{i:04d}.parquet"
+    filename = f"full-{i:05d}-of-00010.parquet"
     print(f"Downloading {filename}...")
 
     hf_hub_download(
