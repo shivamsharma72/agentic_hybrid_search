@@ -1,10 +1,35 @@
 # Large data files
 data/raw/*.csv
-*.csv
+data/raw/*.gz
+data/processed/raw_meta_Electronics/*.parquet
 
-# Pickle files (optional - they're only 4-5 MB so they're OK)
-# *.pkl
+# Pickle files (optional - small enough to include)
+# logs/*.pkl
 
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/*.txt
+logs/*.log
