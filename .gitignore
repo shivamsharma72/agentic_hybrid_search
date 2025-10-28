@@ -1,0 +1,10 @@
+# Large data files
+data/raw/*.csv
+*.csv
+
+# Pickle files (optional - they're only 4-5 MB so they're OK)
+# *.pkl
+
+# Python cache
+__pycache__/
+*.pyc

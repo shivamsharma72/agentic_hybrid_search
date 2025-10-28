@@ -1,0 +1,137 @@
+================================================================================
+PRODUCT DATA TO POSTGRESQL - EXECUTION ORDER
+================================================================================
+
+This file lists the exact order to run scripts for loading product data.
+
+================================================================================
+PREREQUISITES
+================================================================================
+
+1. PostgreSQL 17 installed with pgvector extension
+2. Python 3.x with required packages:
+   - psycopg2
+   - pandas
+   - pyarrow
+   - pickle (built-in)
+
+3. Required data files:
+   - data/raw/Electronics_pureid_5core.csv (15M rows)
+   - raw_meta_Electronics/*.parquet (10 files, 1.6M products)
+
+================================================================================
+EXECUTION ORDER
+================================================================================
+
+Step 1: Extract Whitelist from 5-Core CSV
+------------------------------------------
+Script: scripts/extract_unique_asins.py
+Input:  data/raw/Electronics_pureid_5core.csv
+Output: logs/unique_asins_whitelist.pkl (368K ASINs)
+Time:   ~2-3 minutes
+
+Description: Reads the 5-core CSV and extracts all unique parent_asin values.
+This creates a whitelist of products that have at least 5 reviews.
+
+
+Step 2: Setup Database and Create Products Table
+-------------------------------------------------
+Script: scripts/setup_database.py
+Input:  schema/products_table.sql
+Output: PostgreSQL database 'amazon_electronics_rag' with 'products' table
+Time:   <1 minute
+
+Description: Creates the database, installs pgvector extension, and creates
+the products table with proper schema (including vector column).
+
+
+Step 3: Load Products from Parquet to PostgreSQL
+-------------------------------------------------
+Script: scripts/load_products_to_postgres.py
+Input:  
+  - logs/unique_asins_whitelist.pkl (whitelist)
+  - raw_meta_Electronics/*.parquet (10 files)
+Output: 348,228 products loaded into PostgreSQL
+Time:   ~10-15 minutes
+
+Description: Reads Parquet files, filters by whitelist, cleans data, and
+batch inserts into PostgreSQL. Handles data type conversions and transformations.
+
+Expected: 348,228 products loaded (20K will fail due to NULL titles or data issues)
+
+
+Step 4: Extract Whitelist from Loaded Products
+-----------------------------------------------
+Script: scripts/extract_electronics_whitelist.py
+Input:  PostgreSQL products table
+Output: logs/electronics_products_whitelist.pkl (348K ASINs)
+Time:   <1 minute
+
+Description: Extracts all parent_asin values from successfully loaded products.
+This whitelist is used for filtering reviews (ensures foreign key integrity).
+
+
+Step 5: Verify Data Integrity
+------------------------------
+Script: scripts/verify_data_integrity.py
+Input:  PostgreSQL products table
+Output: Console report with statistics
+Time:   ~1 minute
+
+Description: Runs comprehensive checks on loaded data (counts, duplicates,
+field completeness, JSONB integrity, sample data).
+
+================================================================================
+VERIFICATION QUERIES
+================================================================================
+
+After loading, verify with these SQL queries:
+
+-- Count products
+SELECT COUNT(*) FROM products;
+-- Expected: 348,228
+
+-- Check for duplicates
+SELECT parent_asin, COUNT(*) FROM products GROUP BY parent_asin HAVING COUNT(*) > 1;
+-- Expected: 0 rows
+
+-- Field completeness
+SELECT 
+  COUNT(*) as total,
+  COUNT(description) as with_description,
+  COUNT(price) as with_price,
+  COUNT(features) as with_features
+FROM products;
+
+-- Check JSONB integrity
+SELECT COUNT(*) FROM products WHERE jsonb_typeof(details) = 'object';
+-- Expected: 348,228
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Issue: "pgvector extension not found"
+Solution: Install pgvector for PostgreSQL 17
+  brew install pgvector
+  Or compile from source
+
+Issue: "20,000 products not loading"
+Solution: This is expected - they have NULL titles or data quality issues
+  Check logs/failed_product_asins.txt for list
+
+Issue: "can't adapt type 'dict'" error
+Solution: Ensure load_products_to_postgres.py has proper JSONB serialization
+  (convert_to_jsonb should return json.dumps(dict))
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+After completing these steps, use electronics_products_whitelist.pkl to:
+1. Filter and convert review data (Electronics.jsonl → Parquet)
+2. Load reviews into PostgreSQL reviews table
+
+See review data loading folder/scripts for next phase.
+
+================================================================================
