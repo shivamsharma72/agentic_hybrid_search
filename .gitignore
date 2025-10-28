@@ -1,0 +1,40 @@
+# Large data files - EXCLUDE EVERYTHING in data/processed
+data/raw/*.jsonl
+data/raw/*.jsonl.gz
+data/processed/reviews_Electronics/*.parquet
+data/processed/reviews_Electronics/*.jsonl
+data/processed/parquet/*.parquet
+
+# Pickle files (optional - small enough to include)
+# logs/*.pkl
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/*.txt
+logs/*.log
+
+# Electronics JSONL file (21 GB)
+data/processed/reviews_Electronics/*.jsonl
