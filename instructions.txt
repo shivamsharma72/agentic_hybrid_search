@@ -1,0 +1,5 @@
+Instructions 
+1. log every move you make , log the steps in a step.txt file - have clear labels and a small explaanation in points of what you did , mention techonologies and commands used too , also if we face any errors write those too adn the steps to resolve them . 
+2. make schema files adn keep them in a folder called schema
+3. keep the directory organised 
+4.  make a tasks file first put tasks there adn then when completed tick them off from there 

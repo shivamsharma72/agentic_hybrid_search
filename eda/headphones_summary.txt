@@ -1,0 +1,50 @@
+
+======================================================================
+🎧 HEADPHONES MARKET ANALYSIS SUMMARY
+======================================================================
+Date: 2025-10-29 18:50
+
+OVERVIEW:
+• Total Products: 27,245
+• With Price Data: 11,310 (41.5%)
+• With Ratings: 27,245 (100.0%)
+
+PRICING:
+• Median Price: $18.99
+• Mean Price: $44.76
+• Price Range: $0.65 - $2999.00
+• Most Common Segment: Budget (<$20)
+
+QUALITY:
+• Average Rating: 3.99★
+• Products ≥4.5★: 4,308 (15.8%)
+• Median Reviews: 156
+
+CONNECTIVITY:
+• Wireless: 9,627
+• Wired: 5,083
+• Wireless Premium: $29.99 median
+
+FORM FACTOR:
+form_factor
+Unknown           12957
+Earbuds/In-Ear    11705
+Over-Ear           1561
+On-Ear             1022
+
+TOP BRANDS:
+brand
+Sony          637
+Wireless      589
+Bluetooth     448
+USB           414
+Sennheiser    344
+
+KEY INSIGHTS:
+1. Budget segment (<$20) has 6,313 products
+2. Wireless headphones dominate the market
+3. Earbuds/In-Ear is the most popular form factor
+4. Sony has the most products (637)
+5. Best value: AirPods Soft TPU Case for Airpods 2 Cover Portable...
+
+======================================================================

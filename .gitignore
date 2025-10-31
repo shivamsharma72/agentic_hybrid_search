@@ -1,0 +1,211 @@
+# ============================================================================
+# Git Ignore for Amazon Electronics RAG Project
+# ============================================================================
+
+# ============================================================================
+# LARGE DATA FILES - Exclude all raw and processed data
+# ============================================================================
+
+# Raw data files (compressed)
+*.jsonl
+*.jsonl.gz
+*.csv.gz
+*.parquet
+*.npy
+
+# CSV data files (only large ones, keep small analysis outputs)
+Electronics_pureid_5core.csv
+Electronics.csv
+Electronics.csv.gz
+Electronics.train.csv
+**/Electronics.train.csv
+
+# Processed data folders - ENTIRE FOLDERS EXCLUDED
+# (These have their own Git repos and large data files)
+review_data_to_postgres/
+product_data_to_postgres/
+export_products_to_parquet/
+
+# Keep the folder structure but ignore data subdirectories
+**/data/raw/
+**/data/processed/
+**/data/**/*.parquet
+**/data/**/*.jsonl
+**/data/**/*.jsonl.gz
+**/data/**/*.npy
+
+# Processed ESCI folder (large benchmark data)
+processed_esci/
+processed_esci.zip
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+venv/
+**/venv/
+env/
+**/env/
+ENV/
+.venv
+.env
+**/eds/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# PyCharm
+.idea/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Python package distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Python cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================================
+# MACOS
+# ============================================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnails
+Thumbs.db
+
+# ============================================================================
+# DATABASE
+# ============================================================================
+
+# PostgreSQL data directories (if any)
+postgres_data/
+pgdata/
+
+# Database dumps (large files)
+*.sql.gz
+*.dump
+*.backup
+
+# ============================================================================
+# EMBEDDINGS & MODELS
+# ============================================================================
+
+# Large embedding files (NPY, Parquet already excluded above)
+embeddings/
+embeddnigs/**/*.npy
+embeddnigs/**/*.parquet
+
+# Model checkpoints (if any)
+models/
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+*.h5
+*.pb
+
+# HuggingFace cache
+.cache/
+huggingface/
+
+# ============================================================================
+# LOGS & TEMPORARY FILES
+# ============================================================================
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# ============================================================================
+# EXCEPTIONS - Files to KEEP despite patterns above
+# ============================================================================
+
+# Keep small analysis CSV outputs
+!details_analysis.csv
+!**/eda/**/*.csv
+
+# Keep schema SQL files (they're code, not data)
+!schema/**/*.sql
+!**/*_table.sql
+
+# Keep requirements and config files
+!requirements.txt
+!**/requirements.txt
+!config.py
+!**/.env.example
+
+# Keep documentation
+!README.md
+!**/*.md
+
+# Keep small sample data (if any)
+!**/sample_*.json
+!**/sample_*.csv
+
+# ============================================================================
+# PROJECT-SPECIFIC EXCLUSIONS
+# ============================================================================
+
+# Exclude data loading folders (have their own repos)
+review_data_to_postgres/
+product_data_to_postgres/
+
+# Exclude upload embeddings folder (has large Parquet files)
+upload_embeddings_to_postgres/
+
+# Resources from Hugging Face (large metadata)
+resorces from hugging face/
+
+# Embedded Git repositories (examples, demos)
+amazon streamlit /
+
+# ============================================================================
+# KEEP THESE IMPORTANT FOLDERS
+# ============================================================================
+
+# DON'T ignore these (explicitly keep):
+# - rag_chatbot/ (all code)
+# - schema/ (SQL schemas)
+# - eda/ (analysis scripts, keep CSVs)
+# - embeddnigs/blair_product_emb.py (just the script)
+# - *.md files (all documentation)
+# - *.py files (all Python scripts in root)
+
+# ============================================================================
+# API KEYS & SECRETS
+# ============================================================================
+
+.env
+*.key
+*.pem
+secrets.json
+credentials.json
+
+# ============================================================================
