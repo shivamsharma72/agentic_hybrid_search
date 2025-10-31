@@ -212,3 +212,14 @@ secrets.json
 credentials.json
 
 # ============================================================================
+
+# Large data files (keep locally, don't push to GitHub)
+*.parquet
+06 - outputs of analysis/**/*.csv
+06 - outputs of analysis/**/*.pkl
+06 - outputs of analysis/**/*.png
+03_analysis/laptop_titles_analysis.csv
+03_analysis/laptop_titles_analysis_asins_only.csv
+03_analysis/laptops_category_details.csv
+03_analysis/laptops_category_details_asins_only.csv
+03_analysis/laptops_parent_category_products.csv
