@@ -24,7 +24,10 @@ Electronics.train.csv
 # (These have their own Git repos and large data files)
 review_data_to_postgres/
 product_data_to_postgres/
-export_products_to_parquet/
+
+# Archive folders with embedded git repos
+05_archive/amazon_streamlit/
+05_archive/complementary_docs/
 
 # Keep the folder structure but ignore data subdirectories
 **/data/raw/
