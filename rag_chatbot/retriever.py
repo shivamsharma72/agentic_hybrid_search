@@ -52,15 +52,25 @@ class EnhancedHybridRetriever:
     """
     
     def __init__(self, db_name: str = None):
-        self.db_name = db_name or os.getenv("DB_NAME", "amazon_electronics_rag")
+        self.db_name = db_name or config.DB_NAME
+        self.db_user = config.DB_USER
+        self.db_password = config.DB_PASSWORD
+        self.db_host = config.DB_HOST
+        self.db_port = config.DB_PORT
         self.conn = None
         self.connect()
     
     def connect(self):
-        """Connect to database"""
+        """Connect to database using config settings"""
         try:
-            self.conn = psycopg2.connect(f"dbname={self.db_name}")
-            print(f"✅ Connected to database: {self.db_name}")
+            self.conn = psycopg2.connect(
+                dbname=self.db_name,
+                user=self.db_user,
+                password=self.db_password,
+                host=self.db_host,
+                port=self.db_port
+            )
+            print(f"✅ Connected to database: {self.db_name} (user: {self.db_user})")
         except Exception as e:
             print(f"❌ Database connection error: {e}")
             raise
