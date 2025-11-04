@@ -1,0 +1,119 @@
+{
+  "coverage": {
+    "total_products": 5455,
+    "has_features_text": 5117,
+    "has_features_array": 5117,
+    "has_non_empty_text": 5117,
+    "coverage_pct_text": 93.80384967919339,
+    "coverage_pct_array": 93.80384967919339
+  },
+  "count_statistics": {
+    "mean": 4.952120383036935,
+    "median": 5.0,
+    "min": 1.0,
+    "max": 15.0,
+    "std": 1.4200940881791881
+  },
+  "top_25_keywords": {
+    "intel": 6049,
+    "core": 4374,
+    "windows": 4009,
+    "processor": 3815,
+    "drive": 3782,
+    "display": 2928,
+    "graphics": 2609,
+    "inch": 2574,
+    "memory": 2227,
+    "hard": 2148,
+    "screen": 2144,
+    "battery": 2019,
+    "home": 1733,
+    "life": 1407,
+    "dual": 1392,
+    "cache": 1370,
+    "backlit": 1357,
+    "hdmi": 1352,
+    "storage": 1344,
+    "bluetooth": 1313,
+    "full": 1291,
+    "laptop": 1254,
+    "type": 1247,
+    "performance": 1239,
+    "system": 1231
+  },
+  "feature_themes": {
+    "Processor/CPU": 6660,
+    "Memory/RAM": 5450,
+    "Storage": 4879,
+    "Display": 5663,
+    "Graphics": 3477,
+    "Battery": 2178,
+    "Connectivity": 3111,
+    "Operating System": 4234,
+    "Design": 2145
+  },
+  "correlation_with_price": 0.159030977402735,
+  "correlation_with_rating": 0.15268673265367397,
+  "brand_statistics": [
+    {
+      "brand": "ASUS",
+      "products": 819,
+      "avg_feature_count": 5.275946275946276,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "MSI",
+      "products": 125,
+      "avg_feature_count": 5.152,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "SAMSUNG",
+      "products": 173,
+      "avg_feature_count": 5.1502890173410405,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "Acer",
+      "products": 233,
+      "avg_feature_count": 5.150214592274678,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "acer",
+      "products": 351,
+      "avg_feature_count": 5.111111111111111,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "HP",
+      "products": 686,
+      "avg_feature_count": 5.039358600583091,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "Toshiba",
+      "products": 159,
+      "avg_feature_count": 4.836477987421383,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "Dell",
+      "products": 517,
+      "avg_feature_count": 4.833655705996131,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "Lenovo",
+      "products": 654,
+      "avg_feature_count": 4.746177370030581,
+      "median_feature_count": 5.0
+    },
+    {
+      "brand": "Amazon Renewed",
+      "products": 659,
+      "avg_feature_count": 4.2746585735963585,
+      "median_feature_count": 5.0
+    }
+  ]
+}

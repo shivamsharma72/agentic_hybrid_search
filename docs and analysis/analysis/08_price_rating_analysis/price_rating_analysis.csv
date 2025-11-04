@@ -1,0 +1,10 @@
+metric,value
+Total Products,5455
+Products with Price,2075
+Products with Rating,5455
+Avg Price,$593.97
+Median Price,$444.00
+Avg Rating,3.80⭐
+Correlation (Price-Rating),0.115
+Correlation (Price-Reviews),-0.088
+Correlation (Rating-Reviews),0.233

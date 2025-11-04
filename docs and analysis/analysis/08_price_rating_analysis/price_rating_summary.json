@@ -1,0 +1,39 @@
+{
+  "price_statistics": {
+    "count": 2075,
+    "mean": 593.9663710843373,
+    "median": 444.0,
+    "std": 494.4174204160735,
+    "min": 24.95,
+    "max": 5598.0,
+    "q25": 239.495,
+    "q75": 797.75
+  },
+  "rating_statistics": {
+    "count": 5455,
+    "mean": 3.8022914757103576,
+    "median": 3.8,
+    "std": 0.4441283302142152,
+    "min": 2.0,
+    "max": 5.0
+  },
+  "review_statistics": {
+    "count": 5455,
+    "mean": 207.36938588450963,
+    "median": 72.0,
+    "max": 35925.0,
+    "total": 1131200.0
+  },
+  "correlations": {
+    "price_rating_pearson": 0.1150186673202497,
+    "price_rating_spearman": 0.17629124808126506,
+    "price_reviews": -0.08768581599707659,
+    "rating_reviews": 0.23319483148366793
+  },
+  "value_segments": {
+    "Best Value": 735,
+    "Premium Value": 404,
+    "Overpriced": 14,
+    "Budget Gems": 82
+  }
+}

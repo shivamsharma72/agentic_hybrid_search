@@ -1,0 +1,103 @@
+{
+  "coverage": {
+    "total_products": 5455,
+    "has_description_text": 4908,
+    "has_description_array": 4908,
+    "has_non_empty_text": 4908,
+    "coverage_pct_text": 89.9725022914757,
+    "coverage_pct_array": 89.9725022914757
+  },
+  "length_statistics": {
+    "mean": 823.0664221678892,
+    "median": 590.0,
+    "min": 1.0,
+    "max": 13203.0,
+    "std": 1057.9501861437525
+  },
+  "top_20_keywords": {
+    "intel": 5570,
+    "processor": 3887,
+    "core": 3879,
+    "display": 3744,
+    "drive": 3615,
+    "battery": 3567,
+    "graphics": 3413,
+    "memory": 3334,
+    "product": 3314,
+    "windows": 3243,
+    "laptop": 3176,
+    "amazon": 2714,
+    "system": 2460,
+    "card": 2226,
+    "technology": 2115,
+    "performance": 2076,
+    "port": 2050,
+    "power": 2004,
+    "built": 1950,
+    "bluetooth": 1943
+  },
+  "correlation_with_price": -0.012468403152397766,
+  "correlation_with_rating": -0.012468403152397766,
+  "brand_statistics": [
+    {
+      "brand": "SAMSUNG",
+      "products": 170,
+      "avg_desc_length": 1146.1117647058823,
+      "median_desc_length": 480.0
+    },
+    {
+      "brand": "HP",
+      "products": 692,
+      "avg_desc_length": 1108.3887283236995,
+      "median_desc_length": 846.0
+    },
+    {
+      "brand": "Toshiba",
+      "products": 157,
+      "avg_desc_length": 949.0254777070064,
+      "median_desc_length": 723.0
+    },
+    {
+      "brand": "MSI",
+      "products": 123,
+      "avg_desc_length": 899.6829268292682,
+      "median_desc_length": 176.0
+    },
+    {
+      "brand": "ASUS",
+      "products": 794,
+      "avg_desc_length": 857.0768261964736,
+      "median_desc_length": 506.0
+    },
+    {
+      "brand": "Acer",
+      "products": 235,
+      "avg_desc_length": 797.327659574468,
+      "median_desc_length": 801.0
+    },
+    {
+      "brand": "acer",
+      "products": 339,
+      "avg_desc_length": 790.1356932153392,
+      "median_desc_length": 788.0
+    },
+    {
+      "brand": "Lenovo",
+      "products": 632,
+      "avg_desc_length": 711.7389240506329,
+      "median_desc_length": 560.5
+    },
+    {
+      "brand": "Amazon Renewed",
+      "products": 637,
+      "avg_desc_length": 667.1240188383046,
+      "median_desc_length": 590.0
+    },
+    {
+      "brand": "Dell",
+      "products": 502,
+      "avg_desc_length": 476.3366533864542,
+      "median_desc_length": 285.0
+    }
+  ]
+}

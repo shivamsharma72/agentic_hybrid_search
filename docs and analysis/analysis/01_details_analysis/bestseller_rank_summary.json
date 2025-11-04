@@ -1,0 +1,21 @@
+{
+  "total_products_with_ranks": 2859,
+  "total_rank_entries": 2859,
+  "overall_electronics_ranks": 16,
+  "rank_statistics": {
+    "min": 2,
+    "max": 773349,
+    "median": 128641.5,
+    "mean": 226088.875
+  },
+  "top_performers": {
+    "top_100": 5,
+    "top_1000": 5,
+    "top_10000": 6
+  },
+  "correlations": {
+    "rank_vs_price": -0.46387671054458096,
+    "rank_vs_rating": -0.48755289105665883,
+    "rank_vs_reviews": -0.2373698374085904
+  }
+}
