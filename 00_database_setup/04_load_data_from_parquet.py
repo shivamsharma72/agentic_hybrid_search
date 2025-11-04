@@ -14,11 +14,28 @@ Usage:
 """
 
 import psycopg2
+from psycopg2.extensions import register_adapter, AsIs
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
 import os
 import sys
+import json
+
+# ===========================
+# Register numpy array adapter for psycopg2
+# ===========================
+def adapt_numpy_array(numpy_array):
+    """
+    Convert numpy array to PostgreSQL-compatible format.
+    For vectors, convert to list. For other arrays, convert to JSON.
+    """
+    if isinstance(numpy_array, np.ndarray):
+        return AsIs(f"'{json.dumps(numpy_array.tolist())}'")
+    return AsIs(repr(numpy_array))
+
+# Register the adapter
+register_adapter(np.ndarray, adapt_numpy_array)
 
 # ===========================
 # Configuration
@@ -111,10 +128,10 @@ if len(products_df) > 0:
             batch = products_df.iloc[i:i+BATCH_SIZE]
             
             for idx, row in batch.iterrows():
-                # Convert embedding to list if it's a numpy array
-                embedding = row['blair_embedding']
-                if isinstance(embedding, np.ndarray):
-                    embedding = embedding.tolist()
+                # Convert numpy arrays to lists for PostgreSQL
+                embedding = row['blair_embedding'].tolist() if isinstance(row['blair_embedding'], np.ndarray) else row['blair_embedding']
+                desc_array = row['description_array'].tolist() if isinstance(row['description_array'], np.ndarray) else row['description_array']
+                feat_array = row['features_array'].tolist() if isinstance(row['features_array'], np.ndarray) else row['features_array']
                 
                 cur.execute(insert_query, (
                     row['parent_asin'],
@@ -131,8 +148,8 @@ if len(products_df) > 0:
                     row['images'],
                     row['videos'],
                     embedding,
-                    row['description_array'],
-                    row['features_array']
+                    desc_array,
+                    feat_array
                 ))
             
             conn.commit()
@@ -178,10 +195,8 @@ if len(reviews_df) > 0:
             batch = reviews_df.iloc[i:i+REVIEW_BATCH_SIZE]
             
             for idx, row in batch.iterrows():
-                # Convert embedding to list if it's a numpy array
-                embedding = row['blair_embedding']
-                if isinstance(embedding, np.ndarray):
-                    embedding = embedding.tolist()
+                # Convert numpy arrays to lists for PostgreSQL
+                embedding = row['blair_embedding'].tolist() if isinstance(row['blair_embedding'], np.ndarray) else row['blair_embedding']
                 
                 cur.execute(insert_query, (
                     row['asin'],
