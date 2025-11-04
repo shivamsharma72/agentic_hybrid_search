@@ -1,0 +1,41 @@
+# ============================================================================
+# Laptop Hybrid Search - Complete Requirements
+# ============================================================================
+# Install all dependencies: pip install -r requirements.txt
+# Python 3.8+ required
+# ============================================================================
+
+# ============================================================================
+# DATABASE SETUP (00_database_setup/)
+# ============================================================================
+psycopg2-binary>=2.9.9      # PostgreSQL adapter
+pandas>=2.1.0               # Data manipulation
+pyarrow>=14.0.0             # Parquet file reading
+numpy>=1.24.0               # Numerical operations
+tqdm>=4.66.0                # Progress bars
+
+# ============================================================================
+# RAG CHATBOT (rag_chatbot/)
+# ============================================================================
+streamlit>=1.28.0           # Web interface
+openai>=1.3.0               # GPT API integration
+transformers>=4.35.0        # BLAIR-RoBERTa model
+torch>=2.1.0                # PyTorch (for transformers)
+python-dotenv>=1.0.0        # Environment variables
+
+# ============================================================================
+# OPTIONAL BUT RECOMMENDED
+# ============================================================================
+scikit-learn>=1.3.0         # For similarity calculations (if needed)
+sentence-transformers>=2.2.0  # Alternative embedding models
+plotly>=5.18.0              # Interactive visualizations (for Streamlit)
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# - torch installation may vary by system (CPU vs GPU)
+# - For GPU support: pip install torch --index-url https://download.pytorch.org/whl/cu118
+# - For Mac M1/M2: torch should work with default installation
+# - Total install size: ~2-3 GB (mostly torch and transformers)
+# ============================================================================
+

@@ -22,6 +22,10 @@ This is a **semantic search chatbot** that helps users find laptops using natura
 ```
 laptop_hybrid_search/
 │
+├── 📦 requirements.txt               # ALL Python dependencies (install first!)
+├── 🚀 SETUP.md                       # Complete setup guide with venv instructions
+├── 📖 README.md                      # This file - project overview
+│
 ├── 📊 tables_parquet_final/          # Dataset (1.17 GB - Download Required)
 │   ├── laptop_products_with_embeddings.parquet    (24.81 MB)
 │   ├── laptop_reviews_with_embeddings.parquet     (1.14 GB)
@@ -32,22 +36,38 @@ laptop_hybrid_search/
 │   ├── RUN_ALL_SETUP.sh              → Automated setup script
 │   └── README.md                     → Complete setup guide
 │
-├── 🤖 rag_chatbot/                   # Streamlit Application
-│   ├── app.py                        → Main Streamlit interface
-│   ├── retriever.py                  → Vector search engine
-│   ├── response_generator.py         → OpenAI GPT integration
-│   ├── embedding_model.py            → BLAIR-RoBERTa encoder
-│   ├── config.py                     → Configuration settings
-│   ├── requirements.txt              → Python dependencies
-│   ├── env.example                   → Environment template
-│   └── README.md                     → Application guide
-│
-└── README.md                         ← You are here
+└── 🤖 rag_chatbot/                   # Streamlit Application
+    ├── app.py                        → Main Streamlit interface
+    ├── retriever.py                  → Vector search engine
+    ├── response_generator.py         → OpenAI GPT integration
+    ├── embedding_model.py            → BLAIR-RoBERTa encoder
+    ├── config.py                     → Configuration settings
+    ├── requirements.txt              → Chatbot-specific dependencies
+    ├── env.example                   → Environment template
+    └── README.md                     → Application guide
 ```
 
 ---
 
 ## 🚀 Quick Start Guide
+
+> **📘 For detailed setup instructions with virtual environment, see [SETUP.md](SETUP.md)**
+
+### **Step 0: Setup Virtual Environment** 🐍 *(Recommended)*
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate it
+source venv/bin/activate        # macOS/Linux
+venv\Scripts\activate           # Windows
+
+# Install ALL dependencies at once
+pip install -r requirements.txt
+```
+
+---
 
 ### **Step 1: Download Data Files** 📥
 
@@ -90,11 +110,6 @@ cat README.md
 Navigate to chatbot:
 ```bash
 cd ../rag_chatbot
-```
-
-**Install dependencies:**
-```bash
-pip install -r requirements.txt
 ```
 
 **Configure API key:**
