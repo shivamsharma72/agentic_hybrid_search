@@ -1,0 +1,170 @@
+# ============================================================================
+# Laptop Hybrid Search - Git Ignore
+# ============================================================================
+
+# ============================================================================
+# PYTHON
+# ============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+.virtualenv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Python package distribution
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================================
+# DATA FILES - TOO LARGE FOR GITHUB
+# ============================================================================
+
+# Parquet files (1.17 GB - host externally)
+tables_parquet_final/*.parquet
+
+# Keep metadata and documentation
+!tables_parquet_final/*.json
+!tables_parquet_final/README.md
+
+# NumPy arrays
+*.npy
+
+# Large CSV files
+*.csv.gz
+
+# ============================================================================
+# ENVIRONMENT & SECRETS
+# ============================================================================
+
+# Environment files with API keys
+.env
+*.env
+!env.example
+!.env.example
+
+# Secrets
+*.key
+*.pem
+secrets.json
+credentials.json
+
+# ============================================================================
+# DATABASE
+# ============================================================================
+
+# PostgreSQL data directories
+postgres_data/
+pgdata/
+
+# Database dumps
+*.sql.gz
+*.dump
+*.backup
+
+# ============================================================================
+# LOGS & TEMPORARY FILES
+# ============================================================================
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# ============================================================================
+# MACOS
+# ============================================================================
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+
+# ============================================================================
+# IDE & EDITORS
+# ============================================================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ============================================================================
+# MODELS & CACHE
+# ============================================================================
+
+# HuggingFace cache (BLAIR model will download here)
+.cache/
+huggingface/
+
+# Model checkpoints
+models/
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+*.h5
+
+# ============================================================================
+# STREAMLIT
+# ============================================================================
+
+# Streamlit cache
+.streamlit/
+
+# ============================================================================
+# KEEP THESE FILES
+# ============================================================================
+
+# Documentation (always keep)
+!README.md
+!**/*.md
+
+# Requirements
+!requirements.txt
+!**/requirements.txt
+
+# Configuration examples
+!config.py
+!env.example
+
+# Shell scripts
+!*.sh
+
+# SQL schemas
+!**/*.sql
+
+# Python scripts (all code)
+!**/*.py
+
+# ============================================================================
+

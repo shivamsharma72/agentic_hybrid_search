@@ -1,0 +1,46 @@
+{
+  "export_timestamp": "2025-11-03T23:26:22.232548",
+  "source_table": "reviews_laptop",
+  "source_database": "amazon_electronics_rag",
+  "output_file": "/Users/shivamsharma/Desktop/ASU Subjects/semester 4 /swm project/final/tables_parquet_final/laptop_reviews_with_embeddings.parquet",
+  "total_reviews": 350105,
+  "reviews_with_embeddings": 350105,
+  "unique_products": 5455,
+  "unique_users": 324817,
+  "embedding_dimension": 768,
+  "embedding_dtype": "float32",
+  "file_size_mb": 1141.6509380340576,
+  "columns": [
+    "review_id",
+    "asin",
+    "parent_asin",
+    "user_id",
+    "rating",
+    "title",
+    "text",
+    "timestamp",
+    "helpful_vote",
+    "verified_purchase",
+    "blair_embedding"
+  ],
+  "data_types": {
+    "review_id": "int64",
+    "asin": "object",
+    "parent_asin": "object",
+    "user_id": "object",
+    "rating": "float64",
+    "title": "object",
+    "text": "object",
+    "timestamp": "int64",
+    "helpful_vote": "int64",
+    "verified_purchase": "bool",
+    "blair_embedding": "object"
+  },
+  "embedding_format": "numpy.ndarray (float32)",
+  "notes": "Embeddings stored as proper numpy arrays, not strings",
+  "statistics": {
+    "avg_rating": 3.7319975435940647,
+    "reviews_per_product": 64.18056828597616,
+    "verified_purchase_rate": 0.8892732180345896
+  }
+}
