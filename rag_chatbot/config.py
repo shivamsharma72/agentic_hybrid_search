@@ -21,8 +21,13 @@ if not OPENAI_API_KEY:
 # Database Configuration
 # ===========================
 DB_NAME = "amazon_electronics_rag"
-PRODUCTS_TABLE = "products_backup"  # 5,455 laptop products with embeddings
-REVIEWS_TABLE = "reviews_backup"    # 350,105 laptop reviews with embeddings
+DB_USER = os.getenv("DB_USER", "postgres")  # PostgreSQL username (default: postgres)
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")  # PostgreSQL password (default: empty)
+DB_HOST = os.getenv("DB_HOST", "localhost")  # Database host
+DB_PORT = os.getenv("DB_PORT", "5432")  # Database port
+
+PRODUCTS_TABLE = "products_laptop"  # 5,455 laptop products with embeddings
+REVIEWS_TABLE = "reviews_laptop"    # 350,105 laptop reviews with embeddings
 
 # ===========================
 # Model Configuration
