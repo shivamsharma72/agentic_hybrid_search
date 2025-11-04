@@ -40,29 +40,55 @@ def adapt_dict(dict_obj):
     """
     return AsIs(f"'{json.dumps(dict_obj)}'::jsonb")
 
-def adapt_list(list_obj):
-    """
-    Convert Python list to PostgreSQL array or JSONB format.
-    """
-    return AsIs(f"'{json.dumps(list_obj)}'")
+# NOTE: We do NOT register a list adapter!
+# psycopg2 handles Python lists → PostgreSQL arrays natively
+# Only register adapters for numpy and dict
 
 # Register the adapters
 register_adapter(np.ndarray, adapt_numpy_array)
 register_adapter(dict, adapt_dict)
-register_adapter(list, adapt_list)
+# DO NOT: register_adapter(list, adapt_list)  # Let psycopg2 handle lists natively!
 
 # ===========================
 # Helper Functions
 # ===========================
+def convert_numpy_types(obj):
+    """
+    Recursively convert numpy types to Python native types.
+    Handles nested structures (dicts, lists with numpy arrays).
+    """
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, dict):
+        return {key: convert_numpy_types(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(item) for item in obj]
+    elif isinstance(obj, tuple):
+        return tuple(convert_numpy_types(item) for item in obj)
+    return obj
+
 def prepare_json_field(value):
     """
     Prepare a field for PostgreSQL JSONB insertion.
-    Handles None, dict, list, and string values.
+    Handles None, dict, list, numpy array, and string values.
+    Recursively converts nested numpy arrays.
     """
-    if pd.isna(value) or value is None:
+    # Check for None first
+    if value is None:
         return None
+    # Handle numpy arrays (convert to list then JSON)
+    if isinstance(value, np.ndarray):
+        return json.dumps(value.tolist())
+    # Handle dict and list (convert to JSON string, handling nested numpy)
     if isinstance(value, (dict, list)):
-        return json.dumps(value)
+        # Convert any nested numpy types first
+        converted_value = convert_numpy_types(value)
+        return json.dumps(converted_value)
+    # Handle strings
     if isinstance(value, str):
         # If it's already a JSON string, validate and return
         try:
@@ -71,6 +97,12 @@ def prepare_json_field(value):
         except:
             # Not valid JSON, treat as regular string
             return value
+    # Check for scalar NaN values only (not arrays)
+    try:
+        if pd.isna(value):
+            return None
+    except (ValueError, TypeError):
+        pass
     return value
 
 def prepare_array_field(value):
@@ -191,8 +223,10 @@ if len(products_df) > 0:
                 desc_array = prepare_array_field(row.get('description_array'))
                 feat_array = prepare_array_field(row.get('features_array'))
                 
-                # Prepare JSON fields
-                categories_json = prepare_json_field(row.get('categories'))
+                # Prepare categories as PostgreSQL TEXT[] array (not JSON!)
+                categories_array = prepare_array_field(row.get('categories'))
+                
+                # Prepare JSON fields (for JSONB columns)
                 details_json = prepare_json_field(row.get('details'))
                 images_json = prepare_json_field(row.get('images'))
                 videos_json = prepare_json_field(row.get('videos'))
@@ -206,7 +240,7 @@ if len(products_df) > 0:
                     int(row['rating_number']) if pd.notna(row['rating_number']) else None,
                     float(row['price']) if pd.notna(row['price']) else None,
                     row.get('main_category'),
-                    categories_json,
+                    categories_array,  # Changed: use as array, not JSON
                     row.get('store'),
                     details_json,
                     images_json,
