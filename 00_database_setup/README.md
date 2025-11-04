@@ -34,10 +34,19 @@ brew install pgvector
 pip install psycopg2-binary pandas pyarrow numpy tqdm
 ```
 
-### 4. **Parquet Files**
-Ensure you have the Parquet files in `../tables_parquet_final/`:
-- `laptop_products_with_embeddings.parquet` (24.81 MB)
-- `laptop_reviews_with_embeddings.parquet` (1.14 GB)
+### 4. **Parquet Files** 📥
+
+**Download from Dropbox:**
+- 📦 **Products (24.81 MB):** [laptop_products_with_embeddings.parquet](https://www.dropbox.com/scl/fi/2i61diskzrfhuzbsuxzs9/laptop_products_with_embeddings.parquet?rlkey=6wtt1023tnybnnjmo4g826s25&dl=1)
+- 💬 **Reviews (1.14 GB):** [laptop_reviews_with_embeddings.parquet](https://www.dropbox.com/scl/fi/5cnzuduion6tlzsqgef8w/laptop_reviews_with_embeddings.parquet?rlkey=2vx7kpv4zdjj9l4h4uommf0hc&dl=1)
+
+**Place the downloaded files in:** `../tables_parquet_final/`
+```
+laptop_hybrid_search/
+└── tables_parquet_final/
+    ├── laptop_products_with_embeddings.parquet
+    └── laptop_reviews_with_embeddings.parquet
+```
 
 ---
 

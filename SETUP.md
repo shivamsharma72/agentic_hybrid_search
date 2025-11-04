@@ -77,15 +77,17 @@ pip list | grep -E "streamlit|psycopg2|openai|transformers|torch"
 ⚠️ **IMPORTANT:** Data files are not in the repository (too large for GitHub)
 
 **Download from Dropbox:**
-- 📦 Products (24.81 MB): [Add Dropbox Link]
-- 💬 Reviews (1.14 GB): [Add Dropbox Link]
+- 📦 **Products (24.81 MB):** [laptop_products_with_embeddings.parquet](https://www.dropbox.com/scl/fi/2i61diskzrfhuzbsuxzs9/laptop_products_with_embeddings.parquet?rlkey=6wtt1023tnybnnjmo4g826s25&dl=1)
+- 💬 **Reviews (1.14 GB):** [laptop_reviews_with_embeddings.parquet](https://www.dropbox.com/scl/fi/5cnzuduion6tlzsqgef8w/laptop_reviews_with_embeddings.parquet?rlkey=2vx7kpv4zdjj9l4h4uommf0hc&dl=1)
 
 **Place files in:**
 ```bash
 laptop_hybrid_search/tables_parquet_final/
-├── laptop_products_with_embeddings.parquet
-└── laptop_reviews_with_embeddings.parquet
+├── laptop_products_with_embeddings.parquet    (24.81 MB)
+└── laptop_reviews_with_embeddings.parquet     (1.14 GB)
 ```
+
+> 💡 **Tip:** The links above will start downloading automatically. Save them to the `tables_parquet_final/` folder.
 
 **Verify files:**
 ```bash

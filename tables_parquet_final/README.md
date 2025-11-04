@@ -12,13 +12,15 @@
 
 ### 📥 Download from Dropbox:
 
-- 📦 **Products (24.81 MB):** [Dropbox Link - Add Your Link Here]
-- 💬 **Reviews (1.14 GB):** [Dropbox Link - Add Your Link Here]
+- 📦 **Products (24.81 MB):** [laptop_products_with_embeddings.parquet](https://www.dropbox.com/scl/fi/2i61diskzrfhuzbsuxzs9/laptop_products_with_embeddings.parquet?rlkey=6wtt1023tnybnnjmo4g826s25&dl=1)
+- 💬 **Reviews (1.14 GB):** [laptop_reviews_with_embeddings.parquet](https://www.dropbox.com/scl/fi/5cnzuduion6tlzsqgef8w/laptop_reviews_with_embeddings.parquet?rlkey=2vx7kpv4zdjj9l4h4uommf0hc&dl=1)
 
 **After downloading**, place both `.parquet` files in this folder:
 ```
 laptop_hybrid_search/tables_parquet_final/
 ```
+
+> 💡 **Direct Download Tip:** The links above use `?dl=1` for automatic download. Click to download directly!
 
 ---
 
