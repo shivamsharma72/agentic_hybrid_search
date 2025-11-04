@@ -78,12 +78,21 @@ def prepare_array_field(value):
     Prepare an array field for PostgreSQL.
     Converts numpy arrays and lists to proper format.
     """
-    if pd.isna(value) or value is None:
+    # Check for None first (before pd.isna which fails on arrays)
+    if value is None:
         return None
+    # For numpy arrays, convert to list
     if isinstance(value, np.ndarray):
         return value.tolist()
+    # For lists, return as-is
     if isinstance(value, list):
         return value
+    # Check for scalar NaN values only (not arrays)
+    try:
+        if pd.isna(value):
+            return None
+    except (ValueError, TypeError):
+        pass
     return value
 
 # ===========================
