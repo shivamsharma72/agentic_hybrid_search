@@ -19,6 +19,8 @@ tqdm>=4.66.0                # Progress bars
 # ============================================================================
 streamlit>=1.28.0           # Web interface
 openai>=1.3.0               # GPT API integration
+langchain-openai>=0.0.2     # LangChain OpenAI integration
+langchain-core>=0.1.0       # LangChain core utilities
 transformers>=4.35.0        # BLAIR-RoBERTa model
 torch>=2.1.0                # PyTorch (for transformers)
 python-dotenv>=1.0.0        # Environment variables
