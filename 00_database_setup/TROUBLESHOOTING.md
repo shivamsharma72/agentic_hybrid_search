@@ -21,16 +21,42 @@ The script now:
 1. Registers a custom numpy array adapter at startup
 2. Explicitly converts all numpy arrays to Python lists before insertion
 
-### **If you still see this error:**
+---
 
-**Option 1: Update your script**
+## ❌ Error: `can't adapt type 'dict'`
+
+### **Problem:**
+```
+psycopg2.ProgrammingError: can't adapt type 'dict'
+```
+
+### **Cause:**
+psycopg2 doesn't know how to convert Python dictionaries to PostgreSQL JSONB format.
+This happens with fields like `details`, `images`, `videos`, `categories`.
+
+### **Solution:**
+✅ **This is now FIXED in the latest version of `04_load_data_from_parquet.py`**
+
+The script now:
+1. Registers custom adapters for dict, list, and numpy.ndarray
+2. Converts all JSON fields properly before insertion
+3. Uses helper functions `prepare_json_field()` and `prepare_array_field()`
+
+### **If you still see these errors:**
+
+**Option 1: Update your script (RECOMMENDED)**
 ```bash
 # Pull latest changes from GitHub
+cd ~/Desktop/agentic_hybrid_search
 git pull origin laptop_rag_system
+
+# The script is now fixed!
+cd 00_database_setup
+python3 04_load_data_from_parquet.py
 ```
 
 **Option 2: Manual fix**
-Add this at the top of `04_load_data_from_parquet.py` (after imports):
+Add these adapters at the top of `04_load_data_from_parquet.py` (after imports):
 
 ```python
 from psycopg2.extensions import register_adapter, AsIs
@@ -41,12 +67,15 @@ def adapt_numpy_array(numpy_array):
         return AsIs(f"'{json.dumps(numpy_array.tolist())}'")
     return AsIs(repr(numpy_array))
 
-register_adapter(np.ndarray, adapt_numpy_array)
-```
+def adapt_dict(dict_obj):
+    return AsIs(f"'{json.dumps(dict_obj)}'::jsonb")
 
-**Option 3: Install correct version of psycopg2**
-```bash
-pip install --upgrade psycopg2-binary
+def adapt_list(list_obj):
+    return AsIs(f"'{json.dumps(list_obj)}'")
+
+register_adapter(np.ndarray, adapt_numpy_array)
+register_adapter(dict, adapt_dict)
+register_adapter(list, adapt_list)
 ```
 
 ---

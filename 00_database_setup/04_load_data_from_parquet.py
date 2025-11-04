@@ -23,7 +23,7 @@ import sys
 import json
 
 # ===========================
-# Register numpy array adapter for psycopg2
+# Register adapters for psycopg2
 # ===========================
 def adapt_numpy_array(numpy_array):
     """
@@ -34,8 +34,57 @@ def adapt_numpy_array(numpy_array):
         return AsIs(f"'{json.dumps(numpy_array.tolist())}'")
     return AsIs(repr(numpy_array))
 
-# Register the adapter
+def adapt_dict(dict_obj):
+    """
+    Convert Python dict to PostgreSQL JSONB format.
+    """
+    return AsIs(f"'{json.dumps(dict_obj)}'::jsonb")
+
+def adapt_list(list_obj):
+    """
+    Convert Python list to PostgreSQL array or JSONB format.
+    """
+    return AsIs(f"'{json.dumps(list_obj)}'")
+
+# Register the adapters
 register_adapter(np.ndarray, adapt_numpy_array)
+register_adapter(dict, adapt_dict)
+register_adapter(list, adapt_list)
+
+# ===========================
+# Helper Functions
+# ===========================
+def prepare_json_field(value):
+    """
+    Prepare a field for PostgreSQL JSONB insertion.
+    Handles None, dict, list, and string values.
+    """
+    if pd.isna(value) or value is None:
+        return None
+    if isinstance(value, (dict, list)):
+        return json.dumps(value)
+    if isinstance(value, str):
+        # If it's already a JSON string, validate and return
+        try:
+            json.loads(value)
+            return value
+        except:
+            # Not valid JSON, treat as regular string
+            return value
+    return value
+
+def prepare_array_field(value):
+    """
+    Prepare an array field for PostgreSQL.
+    Converts numpy arrays and lists to proper format.
+    """
+    if pd.isna(value) or value is None:
+        return None
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    if isinstance(value, list):
+        return value
+    return value
 
 # ===========================
 # Configuration
@@ -128,25 +177,31 @@ if len(products_df) > 0:
             batch = products_df.iloc[i:i+BATCH_SIZE]
             
             for idx, row in batch.iterrows():
-                # Convert numpy arrays to lists for PostgreSQL
-                embedding = row['blair_embedding'].tolist() if isinstance(row['blair_embedding'], np.ndarray) else row['blair_embedding']
-                desc_array = row['description_array'].tolist() if isinstance(row['description_array'], np.ndarray) else row['description_array']
-                feat_array = row['features_array'].tolist() if isinstance(row['features_array'], np.ndarray) else row['features_array']
+                # Prepare all fields with proper type conversion
+                embedding = prepare_array_field(row['blair_embedding'])
+                desc_array = prepare_array_field(row.get('description_array'))
+                feat_array = prepare_array_field(row.get('features_array'))
+                
+                # Prepare JSON fields
+                categories_json = prepare_json_field(row.get('categories'))
+                details_json = prepare_json_field(row.get('details'))
+                images_json = prepare_json_field(row.get('images'))
+                videos_json = prepare_json_field(row.get('videos'))
                 
                 cur.execute(insert_query, (
                     row['parent_asin'],
-                    row['title'],
-                    row['description'],
-                    row['features'],
+                    row.get('title'),
+                    row.get('description'),
+                    row.get('features'),
                     float(row['average_rating']) if pd.notna(row['average_rating']) else None,
                     int(row['rating_number']) if pd.notna(row['rating_number']) else None,
                     float(row['price']) if pd.notna(row['price']) else None,
-                    row['main_category'],
-                    row['categories'],
-                    row['store'],
-                    row['details'],
-                    row['images'],
-                    row['videos'],
+                    row.get('main_category'),
+                    categories_json,
+                    row.get('store'),
+                    details_json,
+                    images_json,
+                    videos_json,
                     embedding,
                     desc_array,
                     feat_array
@@ -195,21 +250,22 @@ if len(reviews_df) > 0:
             batch = reviews_df.iloc[i:i+REVIEW_BATCH_SIZE]
             
             for idx, row in batch.iterrows():
-                # Convert numpy arrays to lists for PostgreSQL
-                embedding = row['blair_embedding'].tolist() if isinstance(row['blair_embedding'], np.ndarray) else row['blair_embedding']
+                # Prepare fields with proper type conversion
+                embedding = prepare_array_field(row['blair_embedding'])
+                images_json = prepare_json_field(row.get('images'))
                 
                 cur.execute(insert_query, (
                     row['asin'],
                     row['parent_asin'],
                     row['user_id'],
                     float(row['rating']),
-                    row['title'],
-                    row['text'],
+                    row.get('title'),
+                    row.get('text'),
                     int(row['timestamp']),
-                    int(row['helpful_vote']),
-                    bool(row['verified_purchase']),
+                    int(row.get('helpful_vote', 0)),
+                    bool(row.get('verified_purchase', False)),
                     embedding,
-                    row.get('images')
+                    images_json
                 ))
             
             conn.commit()
