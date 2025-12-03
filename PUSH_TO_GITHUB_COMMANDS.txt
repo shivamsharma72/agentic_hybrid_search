@@ -1,0 +1,163 @@
+PUSH TO GITHUB - STEP BY STEP COMMANDS
+=======================================
+
+Repository: https://github.com/shivamsharma72/agentic_hybrid_search
+New Branch: dual_ranking_system
+
+EXECUTE THESE COMMANDS IN ORDER
+--------------------------------
+
+# Step 1: Navigate to project directory
+cd "/Users/shivamsharma/Desktop/Desktop/ASU Subjects/semester 4 /swm project/laptop_hybrid_search/dual_ranking_nextjs"
+
+
+# Step 2: Initialize git (if not already)
+git init
+
+
+# Step 3: Add remote repository
+git remote add origin git@github.com:shivamsharma72/agentic_hybrid_search.git
+
+# If remote already exists, update it:
+git remote set-url origin git@github.com:shivamsharma72/agentic_hybrid_search.git
+
+
+# Step 4: Create and checkout new branch
+git checkout -b dual_ranking_system
+
+
+# Step 5: Add all files (respecting .gitignore)
+git add .
+
+
+# Step 6: Verify what will be committed
+git status
+
+# Check that .parquet files are NOT included:
+git ls-files | grep parquet
+# (Should return nothing!)
+
+
+# Step 7: Commit with descriptive message
+git commit -m "Add dual ranking system with BLAIR-RoBERTa semantic search
+
+- Complete Next.js + FastAPI application
+- BLAIR-RoBERTa hybrid search (products + reviews)
+- Query-aware similarity search
+- LLM-powered dual ranking (price vs sentiment)
+- GPT-4 purchase recommendations
+- Evaluation system with 76.96% Recall@50
+- Complete documentation and setup scripts
+- Data downloadable from Dropbox (1.17 GB)"
+
+
+# Step 8: Push to GitHub
+git push -u origin dual_ranking_system
+
+
+# Step 9: View your branch on GitHub
+# Open: https://github.com/shivamsharma72/agentic_hybrid_search/tree/dual_ranking_system
+
+
+VERIFICATION
+------------
+
+After pushing, verify:
+
+✓ Branch exists: https://github.com/shivamsharma72/agentic_hybrid_search/branches
+✓ Files are there: Check CODE/, DATA/, EVALUATIONS/ folders
+✓ README.md shows Dropbox links
+✓ No .parquet files in repo (should be excluded by .gitignore)
+✓ Repository size is small (~10-20 MB, not 1+ GB)
+
+
+TROUBLESHOOTING
+---------------
+
+If SSH test fails:
+    ssh -T git@github.com
+    # Should say: "Hi shivamsharma72! You've successfully authenticated"
+
+If push fails with "remote already exists":
+    git remote remove origin
+    git remote add origin git@github.com:shivamsharma72/agentic_hybrid_search.git
+
+If large files are being committed:
+    # Check .gitignore exists
+    cat .gitignore | grep parquet
+    
+    # Remove from staging
+    git reset HEAD *.parquet
+    
+    # Re-add only tracked files
+    git add .
+
+
+AFTER PUSHING
+-------------
+
+1. Go to: https://github.com/shivamsharma72/agentic_hybrid_search
+
+2. You'll see a banner: "dual_ranking_system had recent pushes"
+
+3. Click "Compare & pull request" if you want to merge to main
+
+4. Or keep it as a separate branch for now
+
+
+BRANCH STRUCTURE
+----------------
+
+Your repository will have:
+
+main branch (your existing code)
+├── data/
+├── docs/
+├── logs/
+├── schema/
+└── scripts/
+
+dual_ranking_system branch (NEW - this project)
+├── CODE/
+│   ├── backend/
+│   └── frontend/
+├── DATA/
+│   └── tables_parquet_final/
+├── EVALUATIONS/
+└── README.md
+
+
+OPTIONAL: Merge to main later
+------------------------------
+
+If you want to merge the dual_ranking_system branch into main:
+
+# Switch to main
+git checkout main
+
+# Merge dual_ranking_system
+git merge dual_ranking_system
+
+# Push to main
+git push origin main
+
+# Or create a Pull Request on GitHub for review
+
+
+QUICK REFERENCE
+---------------
+
+Clone your repo:
+    git clone git@github.com:shivamsharma72/agentic_hybrid_search.git
+
+Switch branches:
+    git checkout main
+    git checkout dual_ranking_system
+
+List branches:
+    git branch -a
+
+Delete branch (if needed):
+    git branch -d dual_ranking_system        # Local
+    git push origin --delete dual_ranking_system  # Remote
+

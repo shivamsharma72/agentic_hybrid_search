@@ -1,0 +1,230 @@
+# ==========================================
+# LAPTOP DUAL RANKING SYSTEM - .gitignore
+# ==========================================
+
+# ====================
+# LARGE DATA FILES
+# ====================
+*.parquet
+*.csv
+*.json.gz
+*.db
+*.sqlite
+*.hdf5
+*.h5
+
+# Specific large files
+DATA/tables_parquet_final/*.parquet
+sol_export/*.parquet
+
+# ====================
+# PYTHON
+# ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# PyCharm
+.idea/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# ====================
+# NODE / FRONTEND
+# ====================
+node_modules/
+.next/
+out/
+build/
+dist/
+
+# Production
+.vercel
+.netlify
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+.DS_Store
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# ====================
+# ENVIRONMENT & SECRETS
+# ====================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+!env.example
+
+# API Keys
+*_key.txt
+*.key
+secrets/
+
+# ====================
+# DATABASE
+# ====================
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+pgdata/
+
+# ====================
+# OPERATING SYSTEM
+# ====================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ====================
+# IDE & EDITORS
+# ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ====================
+# LOGS & TEMP FILES
+# ====================
+*.log
+logs/
+*.tmp
+*.temp
+*.cache
+
+# ====================
+# BACKUPS
+# ====================
+*.backup
+*.bak
+*.old
+*_backup.*
+*_old.*
+
+# ====================
+# MODEL FILES
+# ====================
+# Large ML models (download separately)
+models/
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# ====================
+# EVALUATION RESULTS
+# ====================
+# Keep the JSON metrics, ignore detailed CSV results
+EVALUATIONS/Evaluation/evaluation/results/*.csv
+!EVALUATIONS/Evaluation/evaluation/results/.gitkeep
+
+# ====================
+# DOCUMENTATION
+# ====================
+# Keep only main README, ignore all others
+TROUBLESHOOTING.txt
+SETUP.txt
+AI_RECOMMENDATION_FEATURE.txt
+REPLICATION_CHECKLIST.txt
+PARQUET_FILES_COMPARISON.txt
+make_standalone.sh.backup
+SETUP_INSTRUCTIONS.txt
+
+# Keep these:
+# !README.md
+# !EVALUATIONS/README_EVALUATION.txt
+# !EVALUATIONS/EVALUATION_SUMMARY.txt
+
+# ====================
+# SCRIPTS & TEMP
+# ====================
+*.sh.backup
+test_*.py
+debug_*.py
+
+# ====================
+# DEPENDENCIES (TRACKED SEPARATELY)
+# ====================
+# Backend dependencies from other folders
+# These will be copied in, so ignore originals
+CODE/backend/dual_ranking_system/
+CODE/backend/rag_chatbot/
+
+# ====================
+# MISC
+# ====================
+.pytest_cache/
+.coverage
+htmlcov/
+*.orig
+.DS_Store?
+.Spotlight-V100
+.Trashes
