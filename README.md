@@ -103,9 +103,13 @@ npm run dev
 
 ## Data
 
-- **Products**: ~20,000 laptop products from Amazon
-- **Reviews**: ~500,000 user reviews with BLAIR embeddings
+- **Products**: 5,455 laptop products from Amazon (5-core filtered)
+  - 2,075 products with prices (used for dual ranking analysis)
+  - 3,380 products without prices (available for search only)
+- **Reviews**: 350,105 user reviews with BLAIR embeddings
+  - 179,355 reviews for products with prices
 - **Vector Space**: Products and reviews in same 768-dimensional space
+- **Embeddings**: Pre-computed BLAIR-RoBERTa (768-dim) for all products and reviews
 
 ## Evaluation
 
