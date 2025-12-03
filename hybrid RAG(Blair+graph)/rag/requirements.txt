@@ -1,0 +1,11 @@
+streamlit
+psycopg2-binary
+neo4j
+python-dotenv
+pandas
+numpy
+openai
+sentence-transformers
+langchain-openai
+langchain-core
+torch
