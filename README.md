@@ -1,8 +1,3 @@
-# Laptop Dual Ranking System
-
-**CSE 573 - Semantic Web Mining**  
-**Fall 2025 - Group Project**
-
 ## Overview
 
 A dual ranking system that uses semantic search and LLM-powered analysis to rank laptops by both price and user sentiment from reviews.
