@@ -1,0 +1,352 @@
+================================================================================
+EXECUTION ORDER - Review Data Loading to PostgreSQL
+================================================================================
+
+This file lists the EXACT commands to execute in order to replicate the 
+review data loading process. Follow these steps sequentially.
+
+================================================================================
+PREREQUISITES
+================================================================================
+
+1. PostgreSQL 17+ installed and running
+2. Python 3.8+ installed
+3. Required Python packages installed:
+   pip install pandas pyarrow psycopg2-binary
+
+4. Database created:
+   createdb amazon_electronics_rag
+
+5. Products table already loaded with 348,228 products
+   (See product_data_to_postgres folder for product loading)
+
+6. Parquet files downloaded and placed in correct location
+
+================================================================================
+STEP 1: DOWNLOAD PARQUET FILES
+================================================================================
+
+IMPORTANT: You must download the 10 Parquet files separately.
+
+Download Location: [INSERT YOUR DOWNLOAD LINK]
+
+Expected files (1.8 GB compressed, ~12 GB uncompressed):
+  - reviews_Electronics_part_0.parquet
+  - reviews_Electronics_part_1.parquet
+  - reviews_Electronics_part_2.parquet
+  - reviews_Electronics_part_3.parquet
+  - reviews_Electronics_part_4.parquet
+  - reviews_Electronics_part_5.parquet
+  - reviews_Electronics_part_6.parquet
+  - reviews_Electronics_part_7.parquet
+  - reviews_Electronics_part_8.parquet
+  - reviews_Electronics_part_9.parquet
+
+Place them in: review_data_to_postgres/data/processed/reviews_Electronics/
+
+Commands:
+---------
+cd review_data_to_postgres
+mkdir -p data/processed/reviews_Electronics
+# Download files to this directory
+
+Expected Output:
+---------------
+10 Parquet files in data/processed/reviews_Electronics/
+
+Time: 5-10 minutes (depending on download speed)
+
+================================================================================
+STEP 2: VERIFY PARQUET FILES
+================================================================================
+
+Verify that all files are downloaded correctly and have the correct schema.
+
+Commands:
+---------
+cd review_data_to_postgres/scripts
+python3 verify_review_data.py
+
+Expected Output:
+---------------
+✅ Found 10 Parquet files
+✅ Total reviews: 37,510,000
+✅ Schema validation passed
+✅ All required columns present: user_id, asin, parent_asin, rating, 
+   title, text, timestamp, helpful_vote, verified_purchase
+✅ No NULL values in required fields (text, parent_asin)
+✅ Rating range: 0.0 to 5.0
+
+Time: 2-3 minutes
+
+================================================================================
+STEP 3: CREATE REVIEWS TABLE
+================================================================================
+
+Create the PostgreSQL table schema with all columns, indexes, and constraints.
+
+Commands:
+---------
+psql -d amazon_electronics_rag -f schema/reviews_table.sql
+
+Expected Output:
+---------------
+CREATE TABLE
+CREATE INDEX (9 times - for all indexes)
+ALTER TABLE (for foreign key)
+COMMENT ON TABLE
+COMMENT ON COLUMN (10 times - for all columns)
+
+Time: < 1 second (empty table)
+
+Verify:
+-------
+psql -d amazon_electronics_rag -c "\d reviews"
+
+Should show:
+- Table with 10 columns
+- 9 indexes
+- 1 foreign key constraint
+- 1 check constraint (rating 0-5)
+
+================================================================================
+STEP 4: LOAD REVIEWS TO POSTGRESQL
+================================================================================
+
+Load all 37.5 million reviews using the optimized bulk loading script.
+
+Commands:
+---------
+cd review_data_to_postgres/scripts
+python3 load_reviews_to_postgres_optimized.py
+
+What happens:
+------------
+1. Drops 8 indexes (keeps primary key)
+2. Drops foreign key constraint
+3. Loads 37.5M reviews in 10 batches
+4. Recreates 8 indexes
+5. Recreates foreign key constraint
+6. Runs ANALYZE to update statistics
+
+Expected Output (every ~60 seconds):
+-----------------------------------
+Starting review loading process...
+Dropping indexes for faster loading...
+Dropped 8 indexes
+Dropping foreign key constraint...
+
+Processing file 1/10: reviews_Electronics_part_0.parquet
+  Rows in file: 3,751,000
+  Loaded 3,751,000 rows in 58.3 seconds (64,378 rows/sec)
+  Committed batch 1/10
+
+Processing file 2/10: reviews_Electronics_part_1.parquet
+  Rows in file: 3,751,000
+  Loaded 3,751,000 rows in 59.1 seconds (63,452 rows/sec)
+  Committed batch 2/10
+
+... (continues for all 10 files) ...
+
+Processing file 10/10: reviews_Electronics_part_9.parquet
+  Rows in file: 3,760,000
+  Loaded 3,760,000 rows in 60.2 seconds (62,458 rows/sec)
+  Committed batch 10/10
+
+Loading complete! Loaded 37,510,000 rows
+
+Recreating indexes...
+  Creating idx_reviews_user_id... Done (2.3 min)
+  Creating idx_reviews_parent_asin... Done (2.1 min)
+  Creating idx_reviews_asin... Done (1.9 min)
+  Creating idx_reviews_rating... Done (1.5 min)
+  Creating idx_reviews_timestamp... Done (1.7 min)
+  Creating idx_reviews_verified_purchase... Done (1.2 min)
+  Creating idx_reviews_user_product... Done (2.8 min)
+  Creating idx_reviews_product_rating... Done (2.4 min)
+
+Recreating foreign key constraint...
+  Foreign key created (2.1 min)
+
+Running ANALYZE...
+  Done (1.2 min)
+
+================================================================================
+SUMMARY
+================================================================================
+✅ Loaded 37,510,000 reviews
+✅ Unique users: 16,618,885
+✅ Unique products: 348,228
+✅ Verified purchases: 92.5%
+✅ Table size: 21 GB
+✅ All indexes created
+✅ Foreign key active
+================================================================================
+
+Total Time: ~20-25 minutes
+  - Loading: 10 minutes
+  - Index creation: 8-10 minutes
+  - Foreign key: 2-3 minutes
+  - ANALYZE: 1-2 minutes
+
+================================================================================
+STEP 5: VERIFY LOADED DATA
+================================================================================
+
+Run verification queries to ensure data was loaded correctly.
+
+Commands:
+---------
+psql -d amazon_electronics_rag
+
+Then run:
+
+-- Check total count
+SELECT COUNT(*) FROM reviews;
+-- Expected: 37510000
+
+-- Check unique users
+SELECT COUNT(DISTINCT user_id) FROM reviews;
+-- Expected: 16618885
+
+-- Check unique products
+SELECT COUNT(DISTINCT parent_asin) FROM reviews;
+-- Expected: 348228
+
+-- Check verified purchases
+SELECT 
+    COUNT(*) FILTER (WHERE verified_purchase = TRUE) as verified,
+    ROUND(COUNT(*) FILTER (WHERE verified_purchase = TRUE)::numeric / COUNT(*) * 100, 1) as pct
+FROM reviews;
+-- Expected: 92.5%
+
+-- Check indexes
+SELECT indexname FROM pg_indexes WHERE tablename = 'reviews' ORDER BY indexname;
+-- Expected: 9 indexes
+
+-- Check foreign key
+SELECT conname FROM pg_constraint WHERE conrelid = 'reviews'::regclass AND contype = 'f';
+-- Expected: fk_reviews_parent_asin
+
+-- Check table size
+SELECT pg_size_pretty(pg_total_relation_size('reviews')) as total_size;
+-- Expected: ~21 GB
+
+Time: < 1 minute
+
+================================================================================
+STEP 6: TEST SAMPLE QUERIES (OPTIONAL)
+================================================================================
+
+Test that indexes are working and queries are fast.
+
+Commands:
+---------
+psql -d amazon_electronics_rag -f scripts/sample_queries.sql
+
+Expected Output:
+---------------
+- Top 10 most reviewed products
+- Most active users
+- Rating distribution
+- Reviews over time
+- Product with best/worst ratings
+
+All queries should complete in < 1 second (thanks to indexes!)
+
+Time: < 1 minute
+
+================================================================================
+MONITORING DURING LOADING
+================================================================================
+
+While loading is in progress (Step 4), you can monitor in a separate terminal:
+
+Commands:
+---------
+cd review_data_to_postgres/scripts
+./check_progress.sh
+
+This shows:
+-----------
+- Current row count
+- Unique users/products so far
+- Table size
+- Whether loading script is still running
+
+Refresh: Run the command again to see updated progress
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+If something fails:
+
+1. Check logs: The script prints detailed error messages
+
+2. Check disk space:
+   df -h
+   (Need at least 25 GB free)
+
+3. Check database connection:
+   psql -d amazon_electronics_rag -c "SELECT version();"
+
+4. Check if table exists:
+   psql -d amazon_electronics_rag -c "\dt reviews"
+
+5. If loading fails mid-way:
+   - Clear partial data: TRUNCATE TABLE reviews CASCADE;
+   - Re-run: python3 load_reviews_to_postgres_optimized.py
+
+6. See TROUBLESHOOTING.md for more solutions
+
+================================================================================
+WHAT'S NEXT?
+================================================================================
+
+After successfully loading reviews:
+
+1. Generate Embeddings
+   - Use BLAIR-RoBERTa model
+   - Create 768-dimensional vectors for each review
+   - Store in blair_embedding column
+
+2. Build Neo4j Graph
+   - Export user-product-review relationships
+   - Import into Neo4j
+   - Train GNN for recommendations
+
+3. Build RAG System
+   - Combine vector search (pgvector)
+   - Graph traversal (Neo4j)
+   - LLM generation (GPT/Claude)
+
+================================================================================
+FILES SUMMARY
+================================================================================
+
+Critical files you need:
+  ✅ schema/reviews_table.sql (table schema)
+  ✅ scripts/load_reviews_to_postgres_optimized.py (loading script)
+  ✅ 10 Parquet files (downloaded separately)
+
+Optional files:
+  ✅ scripts/verify_review_data.py (verification)
+  ✅ scripts/check_progress.sh (monitoring)
+  ✅ scripts/sample_queries.sql (testing)
+
+Documentation:
+  ✅ README.md (overview)
+  ✅ EXECUTION_ORDER.txt (this file)
+  ✅ REPLICATION_GUIDE.md (detailed guide)
+  ✅ TROUBLESHOOTING.md (solutions)
+  ✅ OPTIMIZATION_SUMMARY.md (performance details)
+
+================================================================================
+END OF EXECUTION ORDER
+================================================================================
+
+Questions or issues? Check TROUBLESHOOTING.md or REPLICATION_GUIDE.md
+
+Created: 2025-10-28
+Version: 1.0

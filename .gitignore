@@ -1,5 +1,5 @@
 # ==========================================
-# LAPTOP DUAL RANKING SYSTEM - .gitignore
+# AMAZON GRAPH RAG - .gitignore
 # ==========================================
 
 # ====================
@@ -12,10 +12,26 @@
 *.sqlite
 *.hdf5
 *.h5
+*.npy
+*.jsonl
+*.jsonl.gz
+*.csv.gz
 
 # Specific large files
 DATA/tables_parquet_final/*.parquet
 sol_export/*.parquet
+data/raw/*.jsonl
+data/raw/*.jsonl.gz
+data/processed/reviews_Electronics/*.parquet
+data/processed/reviews_Electronics/*.jsonl
+data/processed/parquet/*.parquet
+
+# Phase-specific large data
+03_analysis/laptop_titles_analysis.csv
+03_analysis/laptop_titles_analysis_asins_only.csv
+03_analysis/laptops_category_details.csv
+03_analysis/laptops_category_details_asins_only.csv
+03_analysis/laptops_parent_category_products.csv
 
 # ====================
 # PYTHON
@@ -41,6 +57,9 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.pytest_cache/
+.coverage
+htmlcov/
 
 # Virtual environments
 env/
@@ -49,9 +68,6 @@ ENV/
 env.bak/
 venv.bak/
 .venv/
-
-# PyCharm
-.idea/
 
 # Jupyter
 .ipynb_checkpoints
@@ -65,27 +81,15 @@ node_modules/
 out/
 build/
 dist/
-
-# Production
 .vercel
 .netlify
-
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 lerna-debug.log*
-
-# Testing
 coverage/
 .nyc_output/
-
-# Misc
-.DS_Store
-*.pem
-
-# TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
@@ -99,11 +103,13 @@ next-env.d.ts
 .env.production.local
 *.env
 !env.example
-
-# API Keys
+!**/.env.example
 *_key.txt
 *.key
+*.pem
 secrets/
+secrets.json
+credentials.json
 
 # ====================
 # DATABASE
@@ -113,23 +119,38 @@ secrets/
 *.sqlite3
 postgres_data/
 pgdata/
+*.sql.gz
+*.dump
+*.backup
+
+# ====================
+# MODEL FILES
+# ====================
+models/
+checkpoints/
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.pb
+.cache/
+huggingface/
 
 # ====================
 # OPERATING SYSTEM
 # ====================
-# macOS
 .DS_Store
+.DS_Store?
 .AppleDouble
 .LSOverride
 ._*
-
-# Windows
+.Spotlight-V100
+.Trashes
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
-
-# Linux
 *~
 .directory
 .Trash-*
@@ -158,38 +179,28 @@ logs/
 *.tmp
 *.temp
 *.cache
+*.orig
 
 # ====================
-# BACKUPS
+# BACKUPS & TEMP SCRIPTS
 # ====================
-*.backup
 *.bak
 *.old
 *_backup.*
 *_old.*
-
-# ====================
-# MODEL FILES
-# ====================
-# Large ML models (download separately)
-models/
-*.bin
-*.pt
-*.pth
-*.ckpt
-*.safetensors
+*.sh.backup
+test_*.py
+debug_*.py
 
 # ====================
 # EVALUATION RESULTS
 # ====================
-# Keep the JSON metrics, ignore detailed CSV results
 EVALUATIONS/Evaluation/evaluation/results/*.csv
 !EVALUATIONS/Evaluation/evaluation/results/.gitkeep
 
 # ====================
-# DOCUMENTATION
+# DOCUMENTATION (phase-specific txt files)
 # ====================
-# Keep only main README, ignore all others
 TROUBLESHOOTING.txt
 SETUP.txt
 AI_RECOMMENDATION_FEATURE.txt
@@ -198,33 +209,8 @@ PARQUET_FILES_COMPARISON.txt
 make_standalone.sh.backup
 SETUP_INSTRUCTIONS.txt
 
-# Keep these:
-# !README.md
-# !EVALUATIONS/README_EVALUATION.txt
-# !EVALUATIONS/EVALUATION_SUMMARY.txt
-
 # ====================
-# SCRIPTS & TEMP
+# DEPENDENCIES (tracked separately)
 # ====================
-*.sh.backup
-test_*.py
-debug_*.py
-
-# ====================
-# DEPENDENCIES (TRACKED SEPARATELY)
-# ====================
-# Backend dependencies from other folders
-# These will be copied in, so ignore originals
 CODE/backend/dual_ranking_system/
 CODE/backend/rag_chatbot/
-
-# ====================
-# MISC
-# ====================
-.pytest_cache/
-.coverage
-htmlcov/
-*.orig
-.DS_Store?
-.Spotlight-V100
-.Trashes

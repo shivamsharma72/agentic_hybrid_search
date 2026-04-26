@@ -1,0 +1,78 @@
+{
+  "source_file": "../data/processed/reviews_Electronics/Electronics.jsonl",
+  "whitelist_file": "../logs/electronics_products_whitelist.pkl",
+  "whitelist_size": 348228,
+  "total_reviews_in_source": 43886944,
+  "reviews_filtered_out": 6374751,
+  "reviews_included": 37510000,
+  "reviews_with_images": 1649929,
+  "reviews_with_null_text_skipped": 2193,
+  "parsing_errors": 0,
+  "num_parquet_files": 10,
+  "total_rows_in_parquet": 37510000,
+  "files": [
+    {
+      "file": "review-part-00001-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 804.58
+    },
+    {
+      "file": "review-part-00002-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 805.2
+    },
+    {
+      "file": "review-part-00003-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 804.7
+    },
+    {
+      "file": "review-part-00004-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 803.9
+    },
+    {
+      "file": "review-part-00005-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 803.67
+    },
+    {
+      "file": "review-part-00006-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 804.58
+    },
+    {
+      "file": "review-part-00007-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 804.7
+    },
+    {
+      "file": "review-part-00008-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 804.61
+    },
+    {
+      "file": "review-part-00009-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 803.89
+    },
+    {
+      "file": "review-part-00010-of-00010.parquet",
+      "rows": 3751000,
+      "size_mb": 805.14
+    }
+  ],
+  "created_at": "2025-10-28T00:50:16.802969",
+  "schema": {
+    "user_id": "string",
+    "asin": "string",
+    "parent_asin": "string",
+    "rating": "float",
+    "title": "string",
+    "text": "string",
+    "timestamp": "int64",
+    "helpful_vote": "int32",
+    "verified_purchase": "bool",
+    "images": "string"
+  }
+}
