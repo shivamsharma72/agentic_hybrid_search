@@ -1,0 +1,10 @@
+category,product_count,market_share_pct,avg_price,median_price,min_price,max_price,avg_rating,total_reviews,avg_reviews_per_product,top_brands
+Traditional Laptops,4862,89.12923923006416,595.0588602739725,439.0,24.95,5598.0,3.8047305635540933,1007091,207.13512957630604,"ASUS, HP, Amazon Renewed"
+2 in 1 Laptops,566,10.375802016498625,588.162530612245,495.0,89.99,2419.6,3.7876325088339224,118410,209.20494699646642,"Lenovo, Amazon Renewed, ASUS"
+Laptops,17,0.31164069660861593,699.5,699.5,699.0,700.0,3.676470588235294,2659,156.41176470588235,"Toshiba, Lenovo, Dell"
+Touchscreen Laptops,4,0.07332722273143905,,,,,3.65,318,79.5,Lenovo
+Amazon Unlimited Storage + Laptop Promotion,2,0.03666361136571952,474.495,474.495,349.99,599.0,3.45,268,134.0,"ASUS, Lenovo"
+Toshiba Laptops,1,0.01833180568285976,,,,,3.3,12,12.0,Toshiba
+Laptop Travel Accessories,1,0.01833180568285976,49.99,49.99,49.99,49.99,3.9,2287,2287.0,TP-Link
+Acer Laptops & Desktops Event,1,0.01833180568285976,,,,,4.0,112,112.0,Acer
+HP Laptops,1,0.01833180568285976,,,,,3.9,43,43.0,HP

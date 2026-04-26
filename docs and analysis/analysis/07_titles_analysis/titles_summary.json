@@ -1,0 +1,111 @@
+{
+  "length_statistics": {
+    "mean_chars": 126.50742438130156,
+    "median_chars": 129.0,
+    "max_chars": 397.0,
+    "min_chars": 4.0,
+    "mean_words": 20.320806599450044,
+    "median_words": 21.0
+  },
+  "top_25_keywords": {
+    "intel": 3204,
+    "core": 2886,
+    "ram": 2373,
+    "ssd": 2009,
+    "processor": 1125,
+    "black": 1109,
+    "hdd": 936,
+    "touchscreen": 935,
+    "asus": 873,
+    "lenovo": 778,
+    "display": 760,
+    "fhd": 722,
+    "dell": 714,
+    "renewed": 698,
+    "hdmi": 686,
+    "acer": 684,
+    "amd": 682,
+    "bluetooth": 666,
+    "silver": 654,
+    "wifi": 640,
+    "webcam": 624,
+    "gaming": 619,
+    "drive": 604,
+    "pro": 598,
+    "ghz": 550
+  },
+  "spec_mentions": {
+    "Brand": 4830,
+    "Processor": 4096,
+    "RAM": 3339,
+    "Storage": 3146,
+    "Screen Size": 4919,
+    "Resolution": 2884,
+    "OS": 2955,
+    "Type": 1985
+  },
+  "correlation_with_price": 0.2197310347586695,
+  "correlation_with_rating": 0.36127563478826774,
+  "brand_statistics": [
+    {
+      "brand": "HP",
+      "products": 763,
+      "avg_title_length": 141.47575360419398,
+      "median_title_length": 152.0
+    },
+    {
+      "brand": "Lenovo",
+      "products": 699,
+      "avg_title_length": 134.4964234620887,
+      "median_title_length": 140.0
+    },
+    {
+      "brand": "Amazon Renewed",
+      "products": 743,
+      "avg_title_length": 134.29609690444144,
+      "median_title_length": 137.0
+    },
+    {
+      "brand": "Dell",
+      "products": 544,
+      "avg_title_length": 129.92095588235293,
+      "median_title_length": 128.0
+    },
+    {
+      "brand": "ASUS",
+      "products": 848,
+      "avg_title_length": 121.60259433962264,
+      "median_title_length": 126.0
+    },
+    {
+      "brand": "Acer",
+      "products": 239,
+      "avg_title_length": 112.14225941422595,
+      "median_title_length": 109.0
+    },
+    {
+      "brand": "acer",
+      "products": 359,
+      "avg_title_length": 109.71309192200557,
+      "median_title_length": 108.0
+    },
+    {
+      "brand": "MSI",
+      "products": 126,
+      "avg_title_length": 108.2936507936508,
+      "median_title_length": 116.0
+    },
+    {
+      "brand": "SAMSUNG",
+      "products": 179,
+      "avg_title_length": 100.2122905027933,
+      "median_title_length": 79.0
+    },
+    {
+      "brand": "Toshiba",
+      "products": 165,
+      "avg_title_length": 97.7939393939394,
+      "median_title_length": 83.0
+    }
+  ]
+}

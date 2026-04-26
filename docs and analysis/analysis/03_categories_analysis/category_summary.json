@@ -1,0 +1,56 @@
+{
+  "total_products": 5455,
+  "unique_categories": 14,
+  "unique_category_paths": 9,
+  "unique_leaf_categories": 9,
+  "unique_root_categories": 1,
+  "avg_hierarchy_depth": 4.991750687442713,
+  "median_hierarchy_depth": 5,
+  "depth_distribution": {
+    "5": 5428,
+    "4": 17,
+    "2": 8,
+    "3": 2
+  },
+  "top_20_root_categories": {
+    "Electronics": 5455
+  },
+  "top_20_leaf_categories": {
+    "Traditional Laptops": 4862,
+    "2 in 1 Laptops": 566,
+    "Laptops": 17,
+    "Touchscreen Laptops": 4,
+    "Amazon Unlimited Storage + Laptop Promotion": 2,
+    "Toshiba Laptops": 1,
+    "Laptop Travel Accessories": 1,
+    "Acer Laptops & Desktops Event": 1,
+    "HP Laptops": 1
+  },
+  "top_15_category_paths": {
+    "Electronics > Computers & Accessories > Computers & Tablets > Laptops > Traditional Laptops": 4862,
+    "Electronics > Computers & Accessories > Computers & Tablets > Laptops > 2 in 1 Laptops": 566,
+    "Electronics > Computers & Accessories > Computers & Tablets > Laptops": 17,
+    "Electronics > Touchscreen Laptops": 4,
+    "Electronics > Amazon Unlimited Storage + Laptop Promotion": 2,
+    "Electronics > Toshiba > Toshiba Laptops": 1,
+    "Electronics > Laptop Travel Accessories": 1,
+    "Electronics > Acer Laptops & Desktops Event": 1,
+    "Electronics > HP > HP Laptops": 1
+  },
+  "top_20_all_categories": {
+    "Electronics": 5455,
+    "Computers & Accessories": 5445,
+    "Computers & Tablets": 5445,
+    "Laptops": 5445,
+    "Traditional Laptops": 4862,
+    "2 in 1 Laptops": 566,
+    "Touchscreen Laptops": 4,
+    "Amazon Unlimited Storage + Laptop Promotion": 2,
+    "Toshiba": 1,
+    "Toshiba Laptops": 1,
+    "Laptop Travel Accessories": 1,
+    "Acer Laptops & Desktops Event": 1,
+    "HP": 1,
+    "HP Laptops": 1
+  }
+}

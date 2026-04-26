@@ -1,0 +1,34 @@
+{
+  "total_products": 5455,
+  "unique_main_categories": 8,
+  "main_category_distribution": {
+    "Computers": 5316,
+    "(Not Specified)": 102,
+    "All Electronics": 28,
+    "Tools & Home Improvement": 2,
+    "Cell Phones & Accessories": 2,
+    "Apple Products": 2,
+    "Industrial & Scientific": 2,
+    "Amazon Home": 1
+  },
+  "match_rate_with_leaf_category": 0.0,
+  "mismatches_count": 5455,
+  "avg_price_by_category": {
+    "Industrial & Scientific": 1999.0,
+    "Apple Products": 1199.99,
+    "Computers": 596.5278006872853,
+    "(Not Specified)": 425.90074074074073,
+    "All Electronics": 306.97249999999997,
+    "Cell Phones & Accessories": 199.0
+  },
+  "avg_rating_by_category": {
+    "Apple Products": 4.35,
+    "Tools & Home Improvement": 3.9499999999999997,
+    "Industrial & Scientific": 3.8499999999999996,
+    "Computers": 3.8049097065462756,
+    "(Not Specified)": 3.730392156862745,
+    "All Electronics": 3.5892857142857144,
+    "Cell Phones & Accessories": 3.15,
+    "Amazon Home": 3.0
+  }
+}

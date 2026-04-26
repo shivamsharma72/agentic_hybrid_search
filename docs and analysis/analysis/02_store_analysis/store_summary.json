@@ -1,0 +1,51 @@
+{
+  "total_stores": 113,
+  "total_products": 5455,
+  "top_10_market_share": 85.51787351054078,
+  "top_20_market_share": 94.99541704857928,
+  "top_20_stores": {
+    "ASUS": 848,
+    "HP": 763,
+    "Amazon Renewed": 743,
+    "Lenovo": 699,
+    "Dell": 544,
+    "acer": 359,
+    "Acer": 239,
+    "SAMSUNG": 179,
+    "Toshiba": 165,
+    "MSI": 126,
+    "msi": 94,
+    "Sony": 92,
+    "Apple": 76,
+    "Razer": 46,
+    "Alienware": 44,
+    "LG": 41,
+    "Gateway": 39,
+    "Microsoft": 34,
+    "HEWLETT PACKARD": 26,
+    "Gigabyte": 25
+  },
+  "portfolio_distribution": {
+    "Specialist (1-5)": 82,
+    "Small (6-10)": 6,
+    "Medium (11-20)": 3,
+    "Large (21-50)": 9,
+    "Mega (51+)": 13
+  },
+  "price_tiers": {
+    "Unknown": 41,
+    "Budget": 40,
+    "Mid-Range": 12,
+    "Luxury": 9,
+    "Premium": 6,
+    "Upper-Mid": 5
+  },
+  "avg_price_by_tier": {
+    "Budget": 250.37681733703948,
+    "Luxury": 1853.0075317460319,
+    "Mid-Range": 552.5641750737906,
+    "Premium": 1295.7856299603175,
+    "Unknown": NaN,
+    "Upper-Mid": 856.3507103030303
+  }
+}

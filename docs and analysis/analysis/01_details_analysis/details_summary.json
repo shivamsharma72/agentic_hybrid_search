@@ -1,0 +1,148 @@
+{
+  "total_products_analyzed": 5455,
+  "unique_specification_keys": 136,
+  "top_20_keys": [
+    {
+      "key": "Brand",
+      "count": 5442,
+      "percentage": 99.76168652612283
+    },
+    {
+      "key": "Operating System",
+      "count": 5409,
+      "percentage": 99.15673693858845
+    },
+    {
+      "key": "Date First Available",
+      "count": 5275,
+      "percentage": 96.70027497708524
+    },
+    {
+      "key": "Item Weight",
+      "count": 5256,
+      "percentage": 96.35197066911091
+    },
+    {
+      "key": "Standing screen display size",
+      "count": 5237,
+      "percentage": 96.00366636113658
+    },
+    {
+      "key": "Screen Size",
+      "count": 5223,
+      "percentage": 95.74702108157653
+    },
+    {
+      "key": "RAM",
+      "count": 5167,
+      "percentage": 94.72043996333639
+    },
+    {
+      "key": "Chipset Brand",
+      "count": 5153,
+      "percentage": 94.46379468377634
+    },
+    {
+      "key": "Hard Drive",
+      "count": 5151,
+      "percentage": 94.42713107241063
+    },
+    {
+      "key": "Card Description",
+      "count": 5144,
+      "percentage": 94.29880843263061
+    },
+    {
+      "key": "Processor Brand",
+      "count": 5115,
+      "percentage": 93.76718606782768
+    },
+    {
+      "key": "Item model number",
+      "count": 5066,
+      "percentage": 92.86892758936756
+    },
+    {
+      "key": "Processor",
+      "count": 5055,
+      "percentage": 92.66727772685608
+    },
+    {
+      "key": "Graphics Coprocessor",
+      "count": 5038,
+      "percentage": 92.35563703024748
+    },
+    {
+      "key": "Product Dimensions",
+      "count": 4931,
+      "percentage": 90.39413382218149
+    },
+    {
+      "key": "Number of Processors",
+      "count": 4887,
+      "percentage": 89.58753437213566
+    },
+    {
+      "key": "Item Dimensions  LxWxH",
+      "count": 4873,
+      "percentage": 89.33088909257562
+    },
+    {
+      "key": "CPU Model",
+      "count": 4868,
+      "percentage": 89.23923006416132
+    },
+    {
+      "key": "Wireless Type",
+      "count": 4834,
+      "percentage": 88.61594867094409
+    },
+    {
+      "key": "Hard Disk Size",
+      "count": 4820,
+      "percentage": 88.35930339138405
+    }
+  ],
+  "coverage_statistics": {
+    "Brand": {
+      "products_with_key": 5442,
+      "coverage_percentage": 99.76168652612283
+    },
+    "Operating System": {
+      "products_with_key": 5409,
+      "coverage_percentage": 99.15673693858845
+    },
+    "Date First Available": {
+      "products_with_key": 5275,
+      "coverage_percentage": 96.70027497708524
+    },
+    "Item Weight": {
+      "products_with_key": 5256,
+      "coverage_percentage": 96.35197066911091
+    },
+    "Standing screen display size": {
+      "products_with_key": 5237,
+      "coverage_percentage": 96.00366636113658
+    },
+    "Screen Size": {
+      "products_with_key": 5223,
+      "coverage_percentage": 95.74702108157653
+    },
+    "RAM": {
+      "products_with_key": 5167,
+      "coverage_percentage": 94.72043996333639
+    },
+    "Chipset Brand": {
+      "products_with_key": 5153,
+      "coverage_percentage": 94.46379468377634
+    },
+    "Hard Drive": {
+      "products_with_key": 5151,
+      "coverage_percentage": 94.42713107241063
+    },
+    "Card Description": {
+      "products_with_key": 5144,
+      "coverage_percentage": 94.29880843263061
+    }
+  }
+}

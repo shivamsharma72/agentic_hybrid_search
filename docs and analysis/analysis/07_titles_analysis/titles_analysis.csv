@@ -1,0 +1,8 @@
+metric,value
+Total Products,5455
+Avg Length (chars),127
+Avg Length (words),20.3
+Median Length (chars),129
+Max Length,397
+Correlation with Price,0.220
+Correlation with Rating,0.361

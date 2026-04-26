@@ -1,0 +1,9 @@
+metric,value
+Total Products,5455
+Has Features,5117
+Coverage %,93.80%
+Avg Feature Count,4.95
+Median Feature Count,5
+Max Feature Count,15
+Correlation with Price,0.159
+Correlation with Rating,0.153
