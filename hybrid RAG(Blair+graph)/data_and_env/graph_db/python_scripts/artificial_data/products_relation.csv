@@ -1,0 +1,11 @@
+parent_asin,price,rated,Leaf_Category,Color,Chipset Brand,Operating System,Average Battery Life (in hours),RAM_Size,RAM_Type,Storage_Size,Storage_Type,Screen_Category,Weight_Category
+B044623240,1579.54,1.9,Laptops,AntiqueWhite,Intel,Windows 11,4,8GB,DDR4,512GB,SSD,IPS,Medium
+B057647566,418.15,3.2,Laptops,PowderBlue,AMD,Windows 11,14,16GB,DDR5,256GB,SSD,IPS,Medium
+B056122271,1356.76,1.0,Laptops,CornflowerBlue,AMD,Chrome OS,7,8GB,DDR4,512GB,SSD,Standard,Light
+B040627921,1869.66,1.6,Laptops,PapayaWhip,AMD,Chrome OS,4,8GB,DDR5,1TB,SSD,IPS,Medium
+B075441249,1564.0,3.2,Laptops,MistyRose,AMD,Windows 11,5,32GB,DDR5,512GB,SSD,IPS,Heavy
+B083135970,432.94,3.5,Laptops,Snow,AMD,Chrome OS,11,32GB,DDR4,512GB,SSD,OLED,Medium
+B066953200,222.93,3.3,Laptops,MediumOrchid,Intel,macOS,13,8GB,DDR5,512GB,SSD,IPS,Medium
+B049330481,705.91,4.3,Laptops,Aqua,AMD,Chrome OS,6,8GB,DDR5,1TB,SSD,Standard,Heavy
+B024234505,1963.05,2.8,Laptops,DarkGoldenRod,AMD,Windows 11,9,16GB,DDR5,512GB,SSD,Standard,Medium
+B096664452,590.0,1.8,Laptops,FireBrick,AMD,Windows 11,13,8GB,DDR4,512GB,SSD,OLED,Heavy
